@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @stack('styles')
         @vite('resources/css/app.css')
-        <title>Devstagram @yield('tittle')</title>
+        <title>OverLoad @yield('tittle')</title>
         @livewireStyles
     </head>
     <body class="bg-gray-100">
@@ -14,7 +14,7 @@
                 
                 <h1 class="text-3xl font-black">
                     <a href="/">
-                        DevStagram
+                        OverLoad
                     </a>
                 </h1>
             
@@ -37,7 +37,7 @@
                         </a>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                            <button type="submit" class="font-bold uppercase text-gray-600 text-sm">Sign off
+                            <button type="submit" class="font-bold uppercase text-gray-600 text-sm">Sign Out
                             </button>
                         </form>
                 </nav>
@@ -61,7 +61,7 @@
         </main>
         
         <footer class="text-center p-5 text-gray-500 font-bold uppercase mb-5">
-            DevStagram - Todos los derechos Reservados
+            OverLoad - Todos los derechos Reservados
             {{ now()->year}}
         </footer>
         @stack('scripts')
