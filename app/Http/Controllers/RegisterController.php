@@ -23,12 +23,22 @@ class RegisterController extends Controller
 
 
         // Validacion
-        
+
+        $allowedDomains = ['outlook.com', 'gmail.com'];
+
         $this->validate($request, [
             'name' => 'required|max:20',
             'username' => 'required|unique:users|min:3|max:20',
-            'email' => 'required|unique:users|email|max:60',
-            'password' => 'required|confirmed|min:2'
+            'email' => [
+                    'required', 'email', 'unique:users,email', 'max:60',
+                    function ($attribute, $value, $fail) use ($allowedDomains) {
+                        $domain = substr(strrchr($value, "@"), 1);
+                            if (!in_array($domain, $allowedDomains)) {
+                                $fail("El dominio del correo no es válido. Solo se permiten los dominios: " . implode(', ', $allowedDomains));
+                        }
+                    }
+                ],
+            'password' => 'required|confirmed|min:8|regex:/[a-z]/|regex:/[A-Z]/'
         ]);
         
         User::create([
