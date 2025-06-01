@@ -9,7 +9,7 @@
             :value="old('titulo')" 
             placeholder="Titulo Juego" />    
             @error('titulo')
-                {{$message}}
+                <livewire:mostrar-alerta :message="$message"/>
             @enderror       
         </div>
         <div>
@@ -21,6 +21,9 @@
             wire:model="desarrolladora" 
             :value="old('desarrolladora')" 
             placeholder="Desarrolladora: ej. Playstation, Bethesda, FromSoftware." />           
+            @error('desarrolladora')
+                <livewire:mostrar-alerta :message="$message"/>
+            @enderror      
         </div>
         <div>
             <x-input-label for="categoria" :value="__('Categoria')" />
@@ -33,7 +36,10 @@
                 @foreach ($categorias as $categoria)
                     <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
                 @endforeach
-            </select>         
+            </select>  
+            @error('categoria')
+                <livewire:mostrar-alerta :message="$message"/>
+            @enderror             
         </div>
         <div>
             <x-input-label for="fechalanzamiento" :value="__('Fecha de Lanzamiento')" />
@@ -43,16 +49,22 @@
                 type="date"
                 wire:model="fechalanzamiento" 
                 :value="old('fechalanzamiento')">
-        </input>         
+            </input>
+            @error('fechalanzamiento')
+                <livewire:mostrar-alerta :message="$message"/>
+            @enderror                    
         </div>
         <div>
-            <x-input-label for="descripcion" :value="__('Descripcion Juego')" />
+            <x-input-label for="descripcion" :value="__('Descripcion del Juego')" />
             <textarea
-                wire:modoel="descripcion"
+                wire:model="descripcion"
                 placeholder="Descripcion del Juego"
                 class="rounded-md shadow-sm border-gray-300 focus:border-indigo-500 
                 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full h-72">
-            </textarea>       
+            </textarea>    
+            @error('descripcion')
+                <livewire:mostrar-alerta :message="$message"/>
+            @enderror         
         </div>
         <div>
             <x-input-label for="imagen" :value="__('Imagen del Juego')" />
@@ -60,7 +72,16 @@
             id="imagen" 
             class="block mt-1 w-full my-5" 
             type="file" 
-            wire:model="imagen"/>           
+            wire:model="imagen"
+            accept="image/*"/> 
+            <div class="my-5 w-80">
+                @if ($imagen)
+                    <img src="{{ $imagen->temporaryUrl() }}" alt="Imagen del Juego" class="w-full h-auto">
+                @endif
+            </div>
+            @error('imagen')
+                <livewire:mostrar-alerta :message="$message"/>
+            @enderror                
         </div>
         <x-primary-button class="w-full justify-center">
             Crear Juego
