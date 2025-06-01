@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
@@ -43,9 +44,12 @@ class GameController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Game $game)
     {
         //
+        return view('games.edit',[
+            'game' => $game,
+        ]);
     }
 
     /**

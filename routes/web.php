@@ -25,6 +25,9 @@ Route::get('/dashboard', [GameController::class, 'index'])->middleware(['auth', 
 Route::get('/games/create', [GameController::class, 'create'])->middleware(['auth', 'verified'])->name
 ('games.create');
 
+Route::get('/games/{game}/edit', [GameController::class, 'edit'])->middleware(['auth', 'verified'])->name
+('games.edit');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Game extends Model
 {
     use HasFactory;
+    protected $casts = [
+    'fechalanzamiento' => 'date',];
 
     protected $fillable = [
         'titulo',

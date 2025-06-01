@@ -30,7 +30,7 @@ class CrearGame extends Component
         $datos = $this->validate();
         //Almacenar la imagen
         $imagen = $this->imagen->store('public/games');
-        $nombre_imagen = str_replace('public/games/', '', $imagen);
+        $datos['imagen'] = str_replace('public/games/', '', $imagen);
         //Crear el Juego
         Game::create([
             'titulo' => $datos['titulo'],

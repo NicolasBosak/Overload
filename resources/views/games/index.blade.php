@@ -13,11 +13,7 @@
                     {{ session('mensaje') }}
                 </div>                
             @endif
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-gray-200">
-                    Mis Publicaciones
-                </div>
-            </div>
+            <livewire:mostrar-games />
         </div>
     </div>
 </x-app-layout>
