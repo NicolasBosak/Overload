@@ -23,4 +23,12 @@ class Game extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
+    public  function jugadores()
+    {
+        return $this->hasMany(Jugador::class);
+    }
+    public function empresa()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

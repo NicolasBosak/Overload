@@ -24,4 +24,14 @@
             <p>{{$game->descripcion}}</p>
         </div>
     </div>
+    @guest
+        <div class="mt-5 bg-gray-50 border vorder-dashed p-5 text-center">
+            <p>
+                Quieres dejar un comentario sobre este juego? <a class="font-bold text-indigo-600" href="{{route('register')}}">Obten una cuenta gratuita</a>
+            </p>
+        </div>
+    @endguest
+    @cannot('create', App\Models\Game::class)
+        <livewire:postular-comentario :game="$game"/>
+    @endcannot
 </div>

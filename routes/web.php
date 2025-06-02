@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', [GameController::class, 'index'])->middleware(['auth', 'verified'])->name
@@ -30,6 +31,9 @@ Route::get('/games/{game}/edit', [GameController::class, 'edit'])->middleware(['
 
 Route::get('/games/{game}', [GameController::class, 'show'])->middleware(['auth', 'verified'])->name
 ('games.show');
+
+//Notificaciones
+Route::get('/notificaciones', NotificacionController::class)->middleware(['auth', 'verified', 'rol.empresa'])->name('notificaciones');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

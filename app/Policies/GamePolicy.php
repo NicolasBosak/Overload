@@ -15,7 +15,7 @@ class GamePolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->rol === 2;
     }
 
     /**
@@ -31,7 +31,7 @@ class GamePolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->rol === 2;
     }
 
     /**

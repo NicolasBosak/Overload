@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Game;
+use App\Models\Jugador;
 use Illuminate\Http\Request;
 
-class GameController extends Controller
+class JugadorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $this->authorize('viewAny', Game::class);
-        return view('games.index');
+        //
     }
 
     /**
@@ -21,36 +20,37 @@ class GameController extends Controller
      */
     public function create()
     {
-        $this->authorize('viewAny', Game::class);
-        return view('games.create');
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Game $game)
+    public function show(Jugador $jugador)
     {
-        return view('games.show',[
-            'game' => $game,
-        ]);    
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Game $game)
+    public function edit(Jugador $jugador)
     {
-        $this->authorize('update', $game);
-
-        return view('games.edit',[
-            'game' => $game,
-        ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Jugador $jugador)
     {
         //
     }
@@ -58,7 +58,7 @@ class GameController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Jugador $jugador)
     {
         //
     }
