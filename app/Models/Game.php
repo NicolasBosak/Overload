@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Game extends Model
 {
     use HasFactory;
-    protected $casts = [
-    'fechalanzamiento' => 'date',];
+    protected $casts = ['fechalanzamiento' => 'date',];
 
     protected $fillable = [
         'titulo',
@@ -20,4 +19,8 @@ class Game extends Model
         'imagen',
         'user_id'
     ];
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class);
+    }
 }

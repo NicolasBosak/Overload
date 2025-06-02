@@ -72,20 +72,21 @@
             id="imagen" 
             class="block mt-1 w-full my-5" 
             type="file" 
-            wire:model="imagen"
+            wire:model="imagen_nueva"
             accept="image/*"/> 
             <div class="my-5 w-80">
                 <x-input-label :value="__('Imagen Actual')" />
                 <img src="{{ asset('storage/games/' . $imagen) }}" alt="Imagen del Juego {{ $titulo }}">
             </div>
 
-            {{--<div class="my-5 w-80">
-                @if ($imagen)
-                    <img src="{{ $imagen->temporaryUrl() }}" alt="Imagen del Juego" class="w-full h-auto">
+            <div class="my-5 w-80">
+                @if ($imagen_nueva)
+                    Imagen Nueva:
+                    <img src="{{ $imagen_nueva->temporaryUrl() }}" alt="Imagen del Juego" class="w-full h-auto">
                 @endif
-            </div>--}}
+            </div>
 
-            @error('imagen')
+            @error('imagen_nueva')
                 <livewire:mostrar-alerta :message="$message"/>
             @enderror                
         </div>

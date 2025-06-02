@@ -26,19 +26,13 @@ class GameController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Game $game)
     {
-        //
+        return view('games.show',[
+            'game' => $game,
+        ]);    
     }
 
     /**
@@ -46,7 +40,8 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        //
+        $this->authorize('update', $game);
+
         return view('games.edit',[
             'game' => $game,
         ]);
