@@ -16,4 +16,13 @@ class Jugador extends Model
         'game_id',
         'comentario'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
+
 }

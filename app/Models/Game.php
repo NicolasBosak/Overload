@@ -25,7 +25,7 @@ class Game extends Model
     }
     public  function jugadores()
     {
-        return $this->hasMany(Jugador::class);
+        return $this->hasMany(Jugador::class)->orderBy('created_at', 'DESC');
     }
     public function empresa()
     {

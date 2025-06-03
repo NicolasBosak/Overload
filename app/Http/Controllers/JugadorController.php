@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Models\Jugador;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,11 @@ class JugadorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Game $game)
     {
-        //
+        return view('jugadores.index', [
+            'game' => $game
+        ]);
     }
 
     /**
