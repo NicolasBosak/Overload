@@ -64,6 +64,28 @@ Este proyecto está desarrollado con **Laravel** y **TailwindCSS** y utiliza **M
  php artisan serve
 ```
 
+## Principios SOLID y Patrones de Diseño
+
+Este proyecto aplica buenas prácticas de desarrollo orientado a objetos, incluyendo:
+
+### Principios SOLID
+
+- **Single Responsibility Principle (SRP):**  
+  La validación de datos y la lógica de negocio están separadas en clases dedicadas (por ejemplo, los Form Requests se encargan de la validación y los controladores solo gestionan el flujo de la aplicación).
+
+- **Open/Closed Principle (OCP):**  
+  El sistema está preparado para ser extendido fácilmente mediante el uso de eventos y listeners. Por ejemplo, al crear un juego se dispara un evento que puede ser escuchado por diferentes listeners para agregar funcionalidades sin modificar el código existente.
+
+### Patrones de Diseño
+
+- **Repository Pattern:**  
+  Se utiliza un repositorio para abstraer el acceso a los datos de los juegos, facilitando el mantenimiento y la escalabilidad del código.
+
+- **Observer Pattern:**  
+  Se emplean observers para ejecutar acciones automáticamente cuando ocurren eventos en los modelos, como registrar logs o enviar notificaciones al crear un juego.
+
+Estas prácticas hacen que el código sea más limpio, modular, fácil de mantener y de extender.
+
 ## Características
 
 - Gestión de juegos y categorías.
