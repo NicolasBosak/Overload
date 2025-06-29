@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GameCreated;
+use App\Http\Requests\StoreGameRequest;
 use App\Models\Game;
+use App\Repositories\GameRepository;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    protected $gameRepository;
+
+    public function __construct(GameRepository $gameRepository)
+    {
+        $this->gameRepository = $gameRepository;
+    }
+
     public function index()
     {
-        $this->authorize('viewAny', Game::class);
-        return view('games.index');
+        $games = $this->gameRepository->all();
+        return view('games.index', compact('games'));
     }
 
     /**
@@ -23,6 +32,22 @@ class GameController extends Controller
     {
         $this->authorize('viewAny', Game::class);
         return view('games.create');
+    }
+
+    public function store(StoreGameRequest $request)
+    {
+    $game = Game::create([
+        'titulo' => $request->titulo,
+        'desarrolladora' => $request->desarrolladora,
+        'categoria_id' => $request->categoria_id,
+        'fechalanzamiento' => $request->fechalanzamiento,
+        'descripcion' => $request->descripcion,
+        'imagen' => $request->imagen,
+        'user_id' => auth()->id(),
+    ]);
+    // Lanza el evento
+    event(new GameCreated($game));
+    return redirect()->route('games.index')->with('success', 'Juego creado correctamente');
     }
 
     /**
@@ -46,7 +71,6 @@ class GameController extends Controller
             'game' => $game,
         ]);
     }
-
     /**
      * Update the specified resource in storage.
      */
@@ -54,12 +78,11 @@ class GameController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         //
-    }
+    } 
 }
